@@ -2,10 +2,13 @@ const express = require('express')
 const AuthController = require('./Controllers/AuthController')
 
 const app = express();
-const router = express.Router()
+bodyParser = require('body-parser')
+
 const port = 3000;
 
-router.post('/auth',AuthController.authenicate)
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json())
+app.use('/auth',AuthController)
 
 
 app.listen(port,() => {
