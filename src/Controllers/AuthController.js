@@ -7,13 +7,12 @@ router.use(bodyParser.json())
 
 
 router.post('/', function(req,res){
+    console.log(req.body)
     AuthenticationService.checkAuthentication({
         username: req.body.username,
         password: req.body.password},
-    function(response){
-        // We might make this slightly more complex once we figure out
-        // How to do this in a better fashion
-        res.status(response.status).send(response(body))
+    function(status,keys,payload){
+        res.status(status).send({ [keys] : payload })
     })
 })
 router.get('/',function(req,res){
