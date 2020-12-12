@@ -9,7 +9,7 @@ var AuthenticationService = require('../Services/AuthenticationService')
 
 
 router.post('/', function(req,res){
-    console.log(req.body)
+    
     AuthenticationService.checkAuthentication({
         username: req.body.username,
         password: req.body.password},
