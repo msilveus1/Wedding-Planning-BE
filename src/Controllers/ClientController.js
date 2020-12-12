@@ -9,10 +9,13 @@ var ClientInfoService = require('../Services/ClientInfoService')
 
 router.post('/',function(req,res){
     if (!req.headers.authorization) {
-        return res.status(403).json({ error: 'No credentials sent!' });
+        return res.status(403).json({ error: 'No Token sent!' });
     }else if(!AuthenticationService.verifyToken(req.headers.authorization)){
         return res.status(403).json({ error: 'Invalid Token' })
     }
+    ClientInfoService.insertClientInfo(body, function(status,keys,response){
+        res.status(status).send({ [keys] : response})
+    })
 
     
 })
