@@ -4,4 +4,5 @@ var bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({ extended : true }));
 router.use(bodyParser.json())
  
-var InstagramService = require('../Services/InstagramService')
+var InstagramService = require('../Services/ClientInfoService')
+
