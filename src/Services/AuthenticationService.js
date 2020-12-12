@@ -7,19 +7,15 @@ module.exports = {
         let conn;
         try {
             conn = await pool.getConnection();
-            console.log(body)
             query = `SELECT * FROM api_authentication WHERE username=${conn.escape(body.username)} AND password=${conn.escape(body.password)}`
             console.log(query)
-            const rows = await conn.query(query);
-	        
-            console.log(rows.length)
+            const rows = await conn.query(query);	        
+            
             if(rows.length == 1){
                 callback(200,"token",this.generateToken())
             }else{
                 callback(403, "message" ,"Invalid Credentials")
             }
-        // const res = await conn.query("INSERT INTO myTable value (?, ?)", [1, "mariadb"]);
-        // console.log(res); // { affectedRows: 1, insertId: 1, warningStatus: 0 }
 
         } catch (err) {
             console.log(err)
@@ -28,10 +24,15 @@ module.exports = {
         }
     },
 
-    generateToken : function generateToken() {
+    generateToken : () => {
         //TODO: Possibly make this much more advance
         return jwt.sign({ data: 'curtain'}, 'salamander', { expiresIn: '1h' });
     },
+    verifyToken : (Token) => {
+        //TODO: Verify this works
+        var decoded = jwt.verify(Token, 'curtain')
+    }
+
 
 
 }

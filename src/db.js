@@ -4,7 +4,7 @@ const pool = mariadb.createPool({
      user:'msilveus', 
      password: '',
      connectionLimit: 5,
-     database : 'WeddingPlanning',
+     database : 'Wedding_Planning_1',
      port: '/var/run/mysqld/mysqld.sock'
 
 });
