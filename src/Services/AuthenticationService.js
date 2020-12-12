@@ -28,12 +28,10 @@ module.exports = {
         }
     },
 
-    generateToken : () => {
+    generateToken : function generateToken() {
         //TODO: Possibly make this much more advance
         return jwt.sign({ data: 'curtain'}, 'salamander', { expiresIn: '1h' });
     },
-
-    
 
 
 }

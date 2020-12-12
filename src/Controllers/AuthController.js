@@ -1,9 +1,11 @@
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
-var AuthenticationService = require('../Services/AuthenticationService')
 router.use(bodyParser.urlencoded({ extended : true }));
 router.use(bodyParser.json())
+
+var AuthenticationService = require('../Services/AuthenticationService')
+
 
 
 router.post('/', function(req,res){
